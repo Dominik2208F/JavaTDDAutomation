@@ -1,0 +1,11 @@
+
+Feature:  Check login
+ 
+  Scenario:  Sample 1
+    Given  user step into login page
+    When user enters valid username  and password
+    And clicks on login button
+    Then user is navigated to the home page properly
+   
+
+  

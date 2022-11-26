@@ -1,0 +1,44 @@
+package StepDefinitions;
+
+import org.openqa.selenium.WebDriver;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class GoogleSearchSteps {
+
+	
+	WebDriver driver;
+	
+	@Given("Browser is open")
+	public void browser_is_open() {
+	   
+		System.getProperty("webdriver.chrome.driver","C:\\Users\\Domin\\eclipse-workspace\\Cucumber\\src\\test\\resources\\Features\\Drivers\\chromedriver.exe")
+		
+	}
+
+	@Given("User is on google page")
+	public void user_is_on_google_page() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("User enters a text in search box")
+	public void user_enters_a_text_in_search_box() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("hit enters")
+	public void hit_enters() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("User is navigated to website")
+	public void user_is_navigated_to_website() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+}

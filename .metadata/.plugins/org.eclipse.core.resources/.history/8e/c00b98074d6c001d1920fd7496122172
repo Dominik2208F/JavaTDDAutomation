@@ -1,0 +1,119 @@
+package Pages;
+
+import java.io.IOException;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import Test.MasterData;
+import dev.failsafe.internal.util.Assert;
+
+public class Page4 {
+
+WebDriver driver;
+MasterData data;
+	
+
+	public Page4(WebDriver driverfromTest) throws IOException {
+	        driver=driverfromTest;
+	        data= new MasterData();
+	}
+	
+	
+	private By YourCoverText = By.xpath("//h2[text()='Your cover']");
+	private By ExpiryPolicyYes = By.cssSelector("label[for='FinalDetails.ConfirmCurrentInsuranceExpiryDate1']");
+	private By ExpiryPolicyNo = By.cssSelector("label[for='FinalDetails.ConfirmCurrentInsuranceExpiryDate2']");
+	private By PolicyRefusedYes = By.id("LegalDeclarations.HasDeclaredInsuranceRefusedOrDeclined1");
+	private By PolicyRefusedNo = By.id("LegalDeclarations.HasDeclaredInsuranceRefusedOrDeclined2");
+	private By PolicyExpiryDatePlaceHolder = By.id("FinalDetails.CurrentInsuranceExpiryDate");
+	private By IscarModifiedYes = By.id("LegalDeclarations.HasDeclaredCarModified1");
+	private By IscarModifiedNo = By.id("LegalDeclarations.HasDeclaredCarModified1");
+	private By PopupButton  = By.xpath(("//label[@for='FinalDetails.CurrentInsuranceExpiryDate']//button[@type='button']"));
+	private By ValueEstimatedYes = By.id("VehicleDetails.VehicleValuationIsDefault1");
+	
+	
+	public Page4 CheckifPage4isloaded() {
+
+		
+		String ExpectedTittle="Your cover";
+		String TextfromSection= driver.findElement(YourCoverText).getText();
+		Assert.isTrue(ExpectedTittle.equals(TextfromSection),"You are not on 4th Page");
+		System.out.println("You are on 4th Page");
+		
+		
+	return this;	
+	}
+	public Page4 EnterInsuranceExpiryQuestion(String answer) throws InterruptedException {
+		
+		data.IsElementClicable(driver, ExpiryPolicyYes);
+		data.IsElementClicable(driver, ExpiryPolicyNo);
+		
+		//WebElement x = new WebDriverWait(driver, Duration.ofSeconds(10))
+		//.until(ExpectedConditions.elementToBeClickable(driver.findElement(ExpiryPolicyNo)));
+		
+		if(answer.equals("Yes"))
+		
+		{   
+		  data.JavaExecutor(driver, ExpiryPolicyYes);
+			
+			
+		}
+		else if(answer.equals("No")) {
+		  data.JavaExecutor(driver, ExpiryPolicyNo);
+			
+			
+		}
+		
+		return this;
+		
+	}
+    public Page4 WhatDoesYourExistingPolicyExpire(String date) {
+	MasterData.SetTextBox(PolicyExpiryDatePlaceHolder, date);
+	//driver.findElement(PolicyExpiryDatePlaceHolder).sendKeys(date);
+	MasterData.ScrollToAndClick(PopupButton);
+	MasterData.ScrollToAndClick(PopupButton);
+    	return this;
+    	
+}
+    public Page4 isPolicyRefused(String answer) {
+    	
+    	if(answer.equals("Yes")) {
+    		data.JavaExecutor(driver, PolicyRefusedYes);
+    	}
+    	else if(answer.equals("No")) {
+    		data.JavaExecutor(driver, PolicyRefusedNo);
+    	}
+    	
+    	
+    return this;
+    }
+    public Page4 IsCarmodified(String answer) {
+    	
+    	if(answer.equals("Yes"))
+    		
+		{   
+		  data.JavaExecutor(driver, IscarModifiedYes);
+			
+			
+		}
+		else if(answer.equals("No")) {
+		  data.JavaExecutor(driver, IscarModifiedNo);
+    	
+		}
+    	return this;    
+		}
+    public Page4 EstimatedCarValue(String answer) {
+    	
+    	return this;
+    	
+    }
+
+
+ }
+
+

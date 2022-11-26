@@ -1,0 +1,15 @@
+package Pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class LoginPage {
+
+	
+WebDriver driverloginpage;
+	
+By username= By.id("name");
+By password=By.id("password");
+By button_login=By.id("login");
+	
+}

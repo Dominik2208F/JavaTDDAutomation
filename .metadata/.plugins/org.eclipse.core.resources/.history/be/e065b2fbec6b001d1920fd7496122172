@@ -1,0 +1,426 @@
+package Pages;
+import java.time.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import Test.MasterData;
+import Test.MasterTest;
+import io.netty.handler.timeout.TimeoutException;
+
+public class Page1 {
+
+	
+static WebDriver driver;	
+	
+
+public Page1(WebDriver driverfromTest) {
+        driver=driverfromTest;
+}
+
+private By CookiesHandler= By.cssSelector("button[id=\"_evidon-accept-button\"]");
+private By RegistrationField=By.cssSelector("input[id='VehicleDetails.VehicleRegistrationNumber']");
+private By FindRegistrationButton=By.cssSelector("div[class='field-inner-wrapper'] button[type='button']");
+private By ConfirmCorrectButton= By.cssSelector("label[for='VehicleDetails.ConfirmCarSearchBtn1']");
+private By BusinessPurpouseYes= By.cssSelector("label[for='VehicleDetails.IsVehicleForBusinessUse1']");
+private By BusinessPurpouseNo= By.cssSelector("label[for='VehicleDetails.IsVehicleForBusinessUse2']");
+private By CommunityworkYes = By.cssSelector("label[for='VehicleDetails.IsVehicleForCommutingUse1']");
+private By CommunityworkYNO = By.cssSelector("label[for='VehicleDetails.IsVehicleForCommutingUse2']");
+private By LimitedBusiness = By.cssSelector("label[for='VehicleDetails.VehicleClassOfUseTypeId1'] span[class='text']");
+private By BusinessUse = By.cssSelector("label[for='VehicleDetails.VehicleClassOfUseTypeId2'] span[class='text']");
+private By SolicitingOrders = By.cssSelector("label[for='VehicleDetails.VehicleClassOfUseTypeId3']");
+private By ClasSUseChecker = By.cssSelector("label[for='VehicleDetails.VehicleClassOfUseTypeId']"); 
+private By SelectAnnualKM = By.xpath("//select[@id='VehicleDetails.AnnualDistanceDrivenTypeId']");
+private By TitleMr = By.cssSelector("label[for='ProposerDetails.TitleTypeId1'] span[class='text']");
+private By TitleMrs = By.cssSelector("label[for='ProposerDetails.TitleTypeId2'] span[class='text']");
+private By TitleMs = By.cssSelector("label[for='ProposerDetails.TitleTypeId3'] span[class='text']");
+private By TitleDr = By.cssSelector("label[for='ProposerDetails.TitleTypeId4'] span[class='text']");
+private By Name = By.xpath("//input[@id='ProposerDetails.FirstName']");
+private By surname = By.xpath("//input[@id='ProposerDetails.LastName']");
+private By DayOfBirth = By.xpath("//input[@id='ProposerDetails.DateOfBirth.Day']");
+private By MonthOfBirth = By.xpath("//input[@id='ProposerDetails.DateOfBirth.Month']");
+private By YearofBirth  = By.xpath("//input[@id='ProposerDetails.DateOfBirth.Year']");
+private By EmailAdress  = By.xpath("//input[@id='ProposerDetails.EmailAddress']");
+private By PhoneNumber  = By.xpath("//input[@name='phone-number']");
+private By Employed  = By.cssSelector("label[for='ProposerDetails.EmploymentStatusTypeId1']");
+private By SelfEmployed  = By.cssSelector("label[for='ProposerDetails.EmploymentStatusTypeId2'] span[class='text']");
+private By Unemployed  = By.cssSelector("label[for='ProposerDetails.EmploymentStatusTypeId4']");
+private By HouseWife  = By.cssSelector("label[for='ProposerDetails.EmploymentStatusTypeId5'] span[class='text']");
+private By occupation = By.xpath("//input[@id='ProposerDetails.OccupationTypeDescription']");
+private By Adress = By.xpath("//input[@id='ProposerDetails.AddressDisplayFormatted']");
+private By RentedAccomodation= By.cssSelector("label[for='ProposerDetails.HouseHoldTypeId1']");
+private By ApartmentOwnedByMe= By.cssSelector("label[for='ProposerDetails.HouseHoldTypeId2'] span[class='text']");
+private By ApartmentOwnedByFamilyMember= By.cssSelector("label[for='ProposerDetails.HouseHoldTypeId2'] span[class='text']");
+private By Other= By.cssSelector("label[for='ProposerDetails.HouseHoldTypeId2'] span[class='text']");
+private By ROIFull = By.xpath("//label[@for='DrivingHistory.DrivingLicenceTypeId1']");
+private By ROIProvisional= By.xpath("//label[@for='DrivingHistory.DrivingLicenceTypeId2']");
+private By UKFull= By.xpath("//label[@for='DrivingHistory.DrivingLicenceTypeId3']");
+private By EUFull= By.xpath("//label[@for='DrivingHistory.DrivingLicenceTypeId4']");
+private By Other1= By.xpath("//label[@for='DrivingHistory.DrivingLicenceTypeId5']");
+private By SelectYearofLicence= By.id("DrivingHistory.YearsLicenceHeldTypeId");
+private By PenaltyYes = By.xpath("//label[@for='DrivingHistory.PenaltyPointsDetails.HasPenaltyPoints1']");
+private By PenaltyNo = By.xpath("//label[@for='DrivingHistory.PenaltyPointsDetails.HasPenaltyPoints2']");
+private By TrainingYes =By.xpath("//label[@for='DrivingHistory.AdvancedDriverTrainingTypeId1']");
+private By TrainingNo= By.xpath("//label[@for='DrivingHistory.AdvancedDriverTrainingTypeId2']");
+private By InsuranceInOwnName= By.xpath("//label[@for='DrivingHistory.DrivingExperienceTypeId1']");
+private By NoPreviousInsurance = By.xpath("//label[@for='DrivingHistory.DrivingExperienceTypeId2']");
+private By InsuradeAsNamedDriver = By.xpath("//label[@for='DrivingHistory.DrivingExperienceTypeId3']");
+private By InsuranceasCompanyCar = By.xpath("//label[@for='DrivingHistory.DrivingExperienceTypeId4']");
+private By InsuranceNCD = By.id("DrivingHistory.NoClaimsDiscountYearsInOwnNameTypeId");
+private By DiscountYes =By.cssSelector("label[for='CoverDetails.HasMultiProductDiscount1']");
+private By DiscountNo =By.cssSelector("label[for='CoverDetails.HasMultiProductDiscount2']");
+private By Assumption =By.id("ConfirmAssumptions");
+private By GetQuoteButton =By.id("getquote-btn");
+
+
+public Page1 CookiesHandler() {
+	
+	 driver.findElement(CookiesHandler).click();
+	return this;
+}
+
+
+
+public Page1 EnterRegistrationNumber(String Registration) {
+	
+	 
+	driver.findElement(RegistrationField).sendKeys(Registration);
+	driver.findElement(FindRegistrationButton).click();
+	driver.findElement(ConfirmCorrectButton).click();
+	MasterData.ScrollTo(InsuranceNCD);
+	return this;
+		
+}
+public Page1 WillthisCarbeUsedforBusinessPurpouseorCommunity(String answer1,String answer2) {
+	
+	if(answer1=="Yes") {
+		driver.findElement(BusinessPurpouseYes).click();
+	}
+	else {
+		driver.findElement(BusinessPurpouseNo).click();
+			if(answer2=="Yes") {
+				driver.findElement(CommunityworkYes).click();
+				}
+			else {
+				driver.findElement(CommunityworkYNO).click();
+			}
+}
+	return this;
+}
+public Page1 TypeOfBusinessCover(String business) {
+	
+	String Business=business.toString();
+	
+	switch(Business) {
+	  case "Limited Business Use":
+		  driver.findElement(LimitedBusiness).click();
+	    break;
+	  case "Business Use":
+		  driver.findElement(BusinessUse).click();
+	    break;
+	  case "Soliciting Orders":
+		  driver.findElement(SolicitingOrders).click();
+		 break;
+	}
+	return this;
+}
+public boolean CheckifTextIsDisyplayed(String text) {
+	if(driver.getPageSource().contains(text)==true) {
+		return true;			
+	}
+	else {
+		return false;
+	}
+}
+public Page1 HowManyKilometersPerYear(String amount) {
+	
+	 WebElement selectElement = driver.findElement(SelectAnnualKM);
+     Select AnnualKM = new Select(selectElement);
+     switch(amount) {
+	  case "Up to 5,000 km":
+		  AnnualKM.selectByIndex(1);
+	    break;
+	  case "Up to 8,000 km":
+		  AnnualKM.selectByIndex(2);
+	    break;
+	  case "Up to 10,000 km":
+	     AnnualKM.selectByIndex(3);
+		 break;
+     }
+     return this;
+}
+public Page1 EnterYouPersonalData(String Title, String name,String Surname) {
+	
+	switch(Title) {
+	  case "Mr":
+		  driver.findElement(TitleMr).click();
+	    break;
+	  case "Mrs":
+		  driver.findElement(TitleMrs).click();
+	    break;
+	  case "Ms":
+		  driver.findElement(TitleMs).click();;
+		 break;
+	  case "Dr":
+		  driver.findElement(TitleDr).click();
+		 break;
+   }
+	driver.findElement(Name).sendKeys(name);
+	driver.findElement(surname).sendKeys(Surname);
+	return this;
+}
+public Page1 EnterYouDataOfBirth(double day,double month, double Year) {
+	
+	double DayConvert= day;
+	double MonthConvert=month;
+	double YearConvert= Year;
+	
+	String x = Double.toString(DayConvert);
+	String y = Double.toString(MonthConvert);
+	String z = Double.toString(YearConvert);
+	
+	driver.findElement(DayOfBirth).sendKeys(x.substring(0,2));
+	driver.findElement(MonthOfBirth).sendKeys(y.substring(0,2));
+	driver.findElement(YearofBirth).sendKeys(z);
+	return this;
+}
+public Page1 EnterEmailandPhoneNumber(String Email,Double phone) {	
+	double PhoneConvert= phone;
+	String x = Double.toString(phone);
+	driver.findElement(EmailAdress).sendKeys(Email);
+	driver.findElement(PhoneNumber).sendKeys(x);
+	return this;
+}
+public Page1 EmploymentStatus(String employment) {
+	switch(employment) {
+	  case "Employed":
+		  driver.findElement(Employed).click();
+	    break;
+	  case "Self Employed":
+		 driver.findElement(SelfEmployed).click();
+	    break;
+	  case "Unemployed":
+		  driver.findElement(Unemployed).click();
+		 break;
+	  case "Housewife":
+		  driver.findElement(HouseWife).click();
+			 break;
+   }
+	return this;
+	
+}
+public Page1 EnterOccupation(String occupation1) throws InterruptedException {	
+	 driver.findElement(occupation).sendKeys(occupation1);
+	 
+	 By confirmChoose = By.xpath("//li[@id='react-autowhatever-1--item-0']");
+	 Thread.sleep(2000);
+	// WebElement firstResult = new WebDriverWait(driver, Duration.ofSeconds(10))
+		        //.until(ExpectedConditions.visibilityOfElementLocated(confirmChoose));
+	 
+	 driver.findElement(confirmChoose).click();
+	 return this;
+}
+public Page1 EnterAdress(String adress) throws InterruptedException {
+	driver.findElement(Adress).sendKeys(adress);
+	Thread.sleep(2000);
+	By confirmChoose = By.cssSelector("div[role='combobox'] span:nth-child(1)");
+	driver.findElement(confirmChoose).click();
+	return this;
+}
+public Page1 TypeOfHouseHold(String type) {
+	
+	switch(type) {
+	  case "RemtedAccomodation":
+		  driver.findElement(RentedAccomodation).click();
+	    break;
+	  case "ApartmentOwnedByMe":
+		 driver.findElement(ApartmentOwnedByMe).click();
+	    break;
+	  case "ApartmentOwnedByFamilyMember":
+		  driver.findElement(ApartmentOwnedByFamilyMember).click();
+		 break;
+	  case "Other":
+		  driver.findElement(Other).click();
+			 break;
+
+	}
+	return this;
+	}
+public Page1 CurrentLicenceType(String type) {
+	
+	switch(type) {
+	  case "ROI(Full)":
+		  driver.findElement(ROIFull).click();
+	    break;
+	  case "ROI(Provisional)":
+		 driver.findElement(ROIProvisional).click();
+	    break;
+	  case "UK(Full)":
+		  driver.findElement(UKFull).click();
+		 break;
+	  case "EU(Full)":
+		  driver.findElement(EUFull).click();
+			 break;
+	  case "Other1":
+		  driver.findElement(Other1).click();
+			 break;
+	}
+	return this;
+}
+public Page1 EssentialDrivingTrainin(String training) {
+	
+	if(training=="Yes"){
+		driver.findElement(TrainingYes).click();
+	}
+	else if(training=="No") {
+		driver.findElement(TrainingNo).click();
+	}
+	return this;
+}
+public Page1 HowLongLicence(String timeoflicence) {
+	
+	 WebElement selectElement = driver.findElement(SelectYearofLicence);
+     Select Year = new Select(selectElement);
+	
+	
+	switch(timeoflicence) {
+	  case "1 year":
+		 Year.selectByVisibleText("1 year");
+	    break;
+	  case "2 years":
+		  Year.selectByVisibleText("2 years");
+	    break;
+	  case "3 years":
+		  Year.selectByVisibleText("3 years");
+		 break;
+	  
+
+	}
+	return this;
+	}
+public Page1 PenaltyPointQuestion(String penalty) {
+	
+	if(penalty.trim()=="Yes"){
+			driver.findElement(PenaltyYes).click();
+	
+	}
+	else if(penalty.trim()=="No") {
+		driver.findElement(PenaltyNo).click();
+	}
+	return this;
+}
+public Page1 HowManyPenaltyPointandReason(double amountofpoints ,String Reason) throws InterruptedException {
+	
+	 By points1= By.cssSelector("label[for='DrivingHistory.PenaltyPointsDetails.NumberOfPenaltyPointsTypeId1']");
+	 By points2= By.cssSelector("label[for='DrivingHistory.PenaltyPointsDetails.NumberOfPenaltyPointsTypeId2']");
+	 By points3= By.cssSelector("label[for='DrivingHistory.PenaltyPointsDetails.NumberOfPenaltyPointsTypeId3']");
+	 
+	 By listedYes = By.cssSelector("label[for='DrivingHistory.PenaltyPointsDetails.PenaltyPointsReason1']");
+	 By listedNo= By.cssSelector("label[for='DrivingHistory.PenaltyPointsDetails.PenaltyPointsReason2']");
+	
+
+	if(Reason.equals("Yes")) {
+		driver.findElement(listedYes).click();
+	}
+	else if(Reason.equals("No")) {
+		driver.findElement(listedNo).click();
+	}
+
+	 if(amountofpoints==1.0) {
+			Thread.sleep(2000);
+			driver.findElement(points1).click();
+		}
+		
+		else if(amountofpoints==2.0) {
+			Thread.sleep(2000);
+			driver.findElement(points2).click();
+		}
+		
+		else if(amountofpoints==3.0) {
+			Thread.sleep(2000);
+			driver.findElement(points3).click();
+		}
+	
+		return this;
+}
+public Page1 RecentInsuranceType(String typeofinsurance) {
+switch(typeofinsurance) {
+	  case "Insured in own Name":
+		 driver.findElement(InsuranceInOwnName).click();
+	    break;
+	  case "No previous insurance":
+		  driver.findElement(NoPreviousInsurance).click();
+	    break;
+	  case "Insured as named driver":
+		  driver.findElement(InsuradeAsNamedDriver).click();
+		 break;
+	  case "Insured on a company car":
+		  driver.findElement(InsuranceasCompanyCar).click();
+		 break;
+	}
+	
+	return this;
+	
+}
+public Page1 NumberOfNCD(String years) {
+	WebElement selectElement = driver.findElement(InsuranceNCD);
+     Select NCD = new Select(selectElement);
+	
+	
+	switch(years) {
+	  case "0 Years Claims Free Driving":
+		 NCD.selectByVisibleText("0 Years Claims Free Driving");
+	    break;
+	  case "1 Years Claims Free Driving":
+		  NCD.selectByVisibleText("1 Years Claims Free Driving");
+	    break;
+	  case "2 Years Claims Free Driving":
+		  NCD.selectByVisibleText("2 Years Claims Free Driving");
+		 break;
+	  case "3 Years Claims Free Driving":
+		  NCD.selectByVisibleText("3 Years Claims Free Driving");
+		 break;
+	  case "4 Years Claims Free Driving":
+		  NCD.selectByVisibleText("4 Years Claims Free Driving");
+		 break;
+	  case "5 Years Claims Free Driving":
+		  NCD.selectByVisibleText("5 Years Claims Free Driving");
+		 break;
+	 
+	}
+	return this;
+	
+}
+public Page1 PolicyDiscount(String answer) {
+	
+	
+	if(answer.equals("Yes")) {
+		driver.findElement(DiscountYes).click();
+	}
+	else if(answer.equals("No")) {
+		driver.findElement(DiscountNo).click();
+	}
+	return this;
+}
+public Page1 DownSiteConfirmationandConfirmation() {
+JavascriptExecutor js = (JavascriptExecutor) driver;  
+js.executeScript("arguments[0].click();", driver.findElement(Assumption));
+driver.findElement(GetQuoteButton).click();
+
+return this;
+}
+
+}
+
+
+
+
+
+
+

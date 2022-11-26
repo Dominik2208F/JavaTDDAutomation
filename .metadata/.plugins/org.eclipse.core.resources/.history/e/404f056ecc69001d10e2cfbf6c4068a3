@@ -1,0 +1,49 @@
+package Test;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+public class Data {
+
+  public void DataReadTest(int row) throws Exception {
+	  
+	  File src = new File("C:\\Users\\Domin\\eclipse-workspace\\AxaIreland\\src\\test\\java\\Test\\Data.xlsx");
+	  FileInputStream fis= new FileInputStream(src);
+	  XSSFWorkbook xsf= new XSSFWorkbook(fis);
+	  XSSFSheet sheet = xsf.getSheetAt(0);
+	  
+	 String Registration= sheet.getRow(row).getCell(1).getStringCellValue();
+	 String BusinessPurpouse= sheet.getRow(row).getCell(2).getStringCellValue();
+	 String TypeOfBusiness= sheet.getRow(row).getCell(3).getStringCellValue();
+	 String KM= sheet.getRow(row).getCell(4).getStringCellValue();
+	 String Male= sheet.getRow(row).getCell(5).getStringCellValue();
+	 String Name= sheet.getRow(row).getCell(6).getStringCellValue();
+	 String Surname= sheet.getRow(row).getCell(7).getStringCellValue();
+	 String Day= sheet.getRow(row).getCell(8).getStringCellValue();
+	 String Month= sheet.getRow(row).getCell(9).getStringCellValue();
+	 String email= sheet.getRow(row).getCell(10).getStringCellValue();
+	 String Phone= sheet.getRow(row).getCell(11).getStringCellValue();
+	 String Employment= sheet.getRow(row).getCell(12).getStringCellValue();
+	 String Occupation= sheet.getRow(row).getCell(13).getStringCellValue();
+	 String Adress= sheet.getRow(row).getCell(14).getStringCellValue();
+	 String TypeofHouseHold= sheet.getRow(row).getCell(15).getStringCellValue();
+	 String Licence= sheet.getRow(row).getCell(16).getStringCellValue();
+	 String EssentialDriving= sheet.getRow(row).getCell(17).getStringCellValue();
+	 String LicenceTime= sheet.getRow(row).getCell(18).getStringCellValue();
+	 String PenaltyPoints= sheet.getRow(row).getCell(19).getStringCellValue();
+	 String HowManyPenalty= sheet.getRow(row).getCell(20).getStringCellValue();
+	 String Reason= sheet.getRow(row).getCell(21).getStringCellValue();
+	 String RecentInsurance= sheet.getRow(row).getCell(22).getStringCellValue();
+	 String NCD= sheet.getRow(row).getCell(23).getStringCellValue();
+	 String Discount= sheet.getRow(row).getCell(24).getStringCellValue();
+	 
+	 
+	 
+  }
+	
+	
+	
+}

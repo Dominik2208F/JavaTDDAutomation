@@ -1,0 +1,40 @@
+package PagesFactory;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import dev.failsafe.internal.util.Assert;
+
+public class LoginPage_PF {
+
+	// w page factory nie potrzeba drivera? tutaj jako deklaracji i inicjacji przez konstruktor
+	@FindBy(id="name")
+	WebElement username;
+	
+	@FindBy(id="password")
+	WebElement password;
+	
+	@FindBy(id="login")
+	WebElement login;
+	
+	public void EnterUserName(String Username) {
+		username.sendKeys(Username);
+	}
+
+	public void EnterPassword(String EnterPassword) {
+	    password.sendKeys(EnterPassword);
+	}
+
+	public void ClickonLoginButton() {
+		login.click();
+	}
+
+	public void CheckLogoutisDisplayed() {
+		
+		boolean logincheck=login.isDisplayed();
+		Assert.isTrue(logincheck, "niepoprawne zalogowanie");
+	}
+	
+}

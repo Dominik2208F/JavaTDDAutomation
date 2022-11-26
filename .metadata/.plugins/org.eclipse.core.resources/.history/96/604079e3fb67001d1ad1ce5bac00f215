@@ -1,0 +1,9 @@
+@smoketest
+Feature: Login test functionality
+
+  Scenario: Check login is successful with walid credential   //1 scenario bez outline
+    Given User is on login page
+    When user enters and password
+    And click on login button
+    Then user is navigated to the home page
+

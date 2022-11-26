@@ -1,0 +1,71 @@
+package StepsforHooks;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.cucumber.java.Before;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class HooksDemoSteps {
+
+	WebDriver driver;
+	// to jest hook ktory zostanie odpalony w calym feature
+	@Before
+	public void BrowserSetUp() {
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Domin\\eclipse-workspace\\Cucumber\\src\\test\\resources\\Features\\Drivers\\chromedriver.exe");
+		driver= new ChromeDriver(); // instancjonowanie drivera
+		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+	}
+	
+	
+	
+	
+	@Given("user step into login page")
+	public void user_step_into_login_page() {
+	   
+	}
+
+	@When("user writee valis username and password")
+	public void user_writee_valis_username_and_password() {
+	   
+	}
+	
+	
+	@When("clicks on login button")
+	public void clicks_on_login_button() {
+	  
+	}
+
+	@Then("user is navigated to the home page properly")
+	public void user_is_navigated_to_the_home_page_properly() {
+	  
+	}
+//////////////////////////////
+	@Given("user step into login page1")
+	public void user_step_into_login_page1() {
+	   
+	}
+
+	@When("user write valid username  and password1")
+	public void user_write_valid_username_and_password1() {
+	   
+	}
+
+	@When("clicks on login button1")
+	public void clicks_on_login_button1() {
+	  
+	}
+
+	@Then("user is navigated to the home page properly1")
+	public void user_is_navigated_to_the_home_page_properly1() {
+	  
+	}
+	
+	
+	
+	
+}

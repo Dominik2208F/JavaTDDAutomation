@@ -1,0 +1,11 @@
+
+
+Feature:  Feature to demo tags
+
+  @smoke
+  Scenario: Title of your scenario
+    Given 
+    When 
+    Then 
+
+  

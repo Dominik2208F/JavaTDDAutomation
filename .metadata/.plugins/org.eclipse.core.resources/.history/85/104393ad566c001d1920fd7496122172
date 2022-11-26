@@ -1,0 +1,162 @@
+package Pages;
+
+import java.io.IOException;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import Test.MasterData;
+import dev.failsafe.internal.util.Assert;
+
+public class Page3 {
+
+	WebDriver driver;
+	MasterData data;
+	
+
+	public Page3(WebDriver driverfromTest) throws IOException {
+	        driver=driverfromTest;
+	        data= new MasterData();
+	}
+	
+//	private By QuotePriceStep3 = By.xpath("//div[@class='typo48']");
+//	private By SectionBenefits = By.xpath("//h2[text()='Your benefits']");
+///	private By AddBreakDownAssistance =By.xpath("//label[@for='OptionalCovers.Addon10243023']");
+//	private By AddOpenDriving =By.xpath("//label[@for='OptionalCovers.Addon10243009']");
+//	private By AddProtectedNoClaimsDiscount =By.xpath("//label[@for='OptionalCovers.Addon10243004']");
+//	private By BreakDownAssitanceValue = By.xpath("/html[1]/body[1]/main[1]/form[1]/div[1]/div[1]/div[1]/section[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/b[1]");
+//	private By OpenDrivingValue =By.xpath("/html[1]/body[1]/main[1]/form[1]/div[1]/div[1]/div[1]/section[2]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/b[1]");
+//	private By ProtectedNoClaimDiscountValue=By.xpath("/html[1]/body[1]/main[1]/form[1]/div[1]/div[1]/div[1]/section[2]/div[1]/div[2]/div[3]/div[1]/div[2]/div[1]/div[1]/b[1]");
+ //   private By ConfirmationButton = By.xpath("//button[text()='Next: Finalise Details']");
+ //   private By Overlay = By.xpath("//div[class='overlay']");	
+	
+
+public Page3 CheckifPage3isLoaded() {
+
+	
+	String ExpectedTittle="Your benefits";
+	String TextfromSection= driver.findElement(SectionBenefits).getText();
+	Assert.isTrue(ExpectedTittle.equals(TextfromSection),"You are not on 3th Page");
+	System.out.println("You are on 3th Page");
+	
+	
+return this;	
+}
+
+public Page3 AddBreakDownAssistance(String add) throws InterruptedException {
+	
+	if(add.equals("Yes")) {
+	
+		data.IsElementVisible(driver, QuotePriceStep3);
+		
+		String QuoteValuefrom3Page= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+		double ConvertQuoteValue= Double.parseDouble(QuoteValuefrom3Page);
+		String BreakdownAssistance = driver.findElement(BreakDownAssitanceValue).getText().substring(2, 7);
+		double ConvertBreakDownAsssitance= Double.parseDouble(BreakdownAssistance);
+		
+		MasterData.ScrollToElement(AddBreakDownAssistance);
+		data.JavaExecutor(driver,AddBreakDownAssistance);
+	    Thread.sleep(4000);  // time to reload a page to take a new Quote
+	
+	
+	double result = ConvertQuoteValue + ConvertBreakDownAsssitance;
+	double RoundResult=Math.round(result*100.0)/100.0;
+	
+	data.IsElementVisible(driver, QuotePriceStep3);
+	
+	String QuoteValuefrom3PageAfterUpdate= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+	double UpdatedValueofQuote= Double.parseDouble(QuoteValuefrom3PageAfterUpdate);
+	boolean Calculation = (UpdatedValueofQuote==RoundResult);		
+	if(Calculation) {
+		System.out.println("Value after BreakdownAssistanse is correct " +  "" + UpdatedValueofQuote);
+		}
+	}
+	
+	
+	return this;
+}
+
+public Page3 AddOpenDriving(String add) throws InterruptedException {
+
+    
+	if(add.equals("Yes")) {
+		
+		data.IsElementVisible(driver, QuotePriceStep3);
+		
+		String QuoteValuefrom3Page= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+		double ConvertQuoteValue= Double.parseDouble(QuoteValuefrom3Page);
+		String AddOpenDrivingValue = driver.findElement(OpenDrivingValue).getText().substring(2, 7);
+		double ConvertAddOpenDrivingValue= Double.parseDouble(AddOpenDrivingValue);
+		
+		MasterData.ScrollToElement(AddOpenDriving);
+		data.JavaExecutor(driver,AddOpenDriving);
+		Thread.sleep(4000);  // time to reload a page to take a new Quote
+	
+	
+	double result = ConvertQuoteValue + ConvertAddOpenDrivingValue;
+	double RoundResult=Math.round(result*100.0)/100.0;
+	
+	    data.IsElementVisible(driver,QuotePriceStep3);
+	
+	String QuoteValuefrom3PageAfterUpdate= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+	
+	
+	double UpdatedValueofQuote= Double.parseDouble(QuoteValuefrom3PageAfterUpdate);
+	if(Double.compare(UpdatedValueofQuote,RoundResult)==0) {
+		System.out.println("Value after OpenDriving is correct " +  "" + UpdatedValueofQuote);
+		}
+	}
+	
+	
+return this;	
+}
+
+public Page3 AddProtectedNoClaim(String add) throws InterruptedException {
+	
+if(add.equals("Yes")) {
+		
+			data.IsElementVisible(driver,QuotePriceStep3);
+			
+			String QuoteValuefrom3Page= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+			double ConvertQuoteValue= Double.parseDouble(QuoteValuefrom3Page);
+			String AddProtectedNoClaim = driver.findElement(ProtectedNoClaimDiscountValue).getText().substring(2, 7);
+			double ConvertProtectedNoClaim= Double.parseDouble(AddProtectedNoClaim);
+			
+			MasterData.ScrollToElement(AddProtectedNoClaimsDiscount);
+			data.JavaExecutor(driver,AddProtectedNoClaimsDiscount);
+		    Thread.sleep(4000);
+		 Boolean OverlayDisappear = new WebDriverWait(driver, Duration.ofSeconds(20))
+			        .until(ExpectedConditions.invisibilityOfElementLocated(Overlay));
+		if(OverlayDisappear) {
+		double result = ConvertQuoteValue + ConvertProtectedNoClaim;
+		double RoundResult=Math.round(result*100.0)/100.0;
+		
+		data.IsElementVisible(driver,QuotePriceStep3);
+		
+		String QuoteValuefrom3PageAfterUpdate= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+		
+		double UpdatedValueofQuote= Double.parseDouble(QuoteValuefrom3PageAfterUpdate);
+		boolean Calculation = (UpdatedValueofQuote==RoundResult);		
+		if(Calculation) {
+			System.out.println("Value after ProtectedNoClaim is correct " +  "" + UpdatedValueofQuote);
+			}
+		}
+		}
+	
+	
+	return this;
+}
+
+public Page3 MoveToPageFour() {
+	
+	driver.findElement(ConfirmationButton).click();
+	return this;
+}
+
+
+}

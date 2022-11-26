@@ -1,0 +1,77 @@
+package StepDefinitions;
+
+
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import Pages.LoginPage;
+import dev.failsafe.internal.util.Assert;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+
+public class LoginDemo_POM {
+
+	WebDriver Driver;
+	LoginPage login;  // pusta deklaracja by używac tego wszedzie i nie musiec za kazdym razem wywolywac
+
+	@Given("browser is open")
+	public void browser_is_open() {
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Domin\\eclipse-workspace\\Cucumber\\src\\test\\resources\\Features\\Drivers\\chromedriver.exe");
+		Driver=new ChromeDriver();
+		Driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		Driver.manage().timeouts().pageLoadTimeout(40,TimeUnit.SECONDS);
+		Driver.manage().window().maximize();
+	}
+
+	@And("user is on login page")
+	public void user_is_on_login_page() {
+		
+		Driver.navigate().to("https://example.testproject.io/web/");
+	}
+	
+	@When("^user enters (.*) and (.*)$")
+	public void user_enters_username_and_password(String username,String password) {
+		
+        
+		login = new LoginPage(Driver);
+		
+		
+		login.EnterUserName(username);
+		
+        WebElement firstResult = new WebDriverWait(Driver,java.time.Duration.ofSeconds(3))
+		        .until(ExpectedConditions.elementToBeClickable(By.id("password")));
+        
+        login.EnterPassword(password);
+	
+		
+	}
+	
+	@And("user clicks on login")
+	public void user_clicks_on_login() {
+		
+		Driver.findElement(By.id("login")).click();
+	
+		
+	}
+	
+	@Then("user is navigated to the home page")
+	public void user_is_navigated_to_the_home_page() {
+	   
+		boolean logincheck = Driver.findElement(By.id("Logout")).isDisplayed();
+		Assert.isTrue(logincheck, "niepoprawne zalogowanie");
+		
+		Driver.close();
+		Driver.quit();
+		
+	}
+}

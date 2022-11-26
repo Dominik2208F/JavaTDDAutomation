@@ -1,0 +1,60 @@
+package Test;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import Pages.Page1;
+import Pages.Page2;
+
+public class TestMain {
+
+	WebDriver Driver;
+	MasterTest Test;
+	Data DataSet;
+
+@Before
+public void BrowserSetUp() {
+	
+	System.setProperty("webdriver.chrome.driver","C:/Users/Domin/eclipse-workspace/AxaIreland/src/test/resources/Drivers/chromedriver.exe");
+	Driver=new ChromeDriver();
+	DataSet= new Data();
+	Driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+	Driver.manage().timeouts().pageLoadTimeout(40,TimeUnit.SECONDS);
+	Driver.manage().window().maximize();
+	Driver.navigate().to("https://www.axa.ie/car-insurance/quote/your-details/?promoCode=AXP020001");
+	
+	
+	
+}
+@Test
+public void Test() throws Throwable  { 
+ //	DataSet.DataReadTest();
+	
+	new MasterTest(Driver).
+	           //   PageOneLouncher().
+	              PageTwoLouncher();
+}
+
+
+
+
+
+
+
+
+
+@After
+public void DriverTearDown() {
+	
+	//Driver.close();
+	//Driver.quit();
+	
+}
+
+
+}

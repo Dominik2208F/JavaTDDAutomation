@@ -1,0 +1,157 @@
+package Pages;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import dev.failsafe.internal.util.Assert;
+
+public class Page3 {
+
+	WebDriver driver;	
+	
+
+	public Page3(WebDriver driverfromTest) {
+	        driver=driverfromTest;
+	}
+	
+	public By QuotePriceStep3 = By.xpath("//div[@class='typo48']");
+	public By SectionBenefits = By.xpath("//h2[text()='Your benefits']");
+	public By AddBreakDownAssistance =By.xpath("//label[@for='OptionalCovers.Addon10243023']");
+	public By AddOpenDriving =By.xpath("//label[@for='OptionalCovers.Addon10243009']");
+	public By AddProtectedNoClaimsDiscount =By.xpath("//label[@for='OptionalCovers.Addon10243004']");
+	public By BreakDownAssitanceValue = By.xpath("/html[1]/body[1]/main[1]/form[1]/div[1]/div[1]/div[1]/section[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]/div[1]/b[1]");
+	public By OpenDrivingValue =By.xpath("/html[1]/body[1]/main[1]/form[1]/div[1]/div[1]/div[1]/section[2]/div[1]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]/b[1]");
+	public By ProtectedNoClaimDiscountValue=By.xpath("/html[1]/body[1]/main[1]/form[1]/div[1]/div[1]/div[1]/section[2]/div[1]/div[2]/div[3]/div[1]/div[2]/div[1]/div[1]/b[1]");
+
+
+public Page3 CheckifPage3isLoaded() {
+
+	
+	String ExpectedTittle="Your benefits";
+	String TextfromSection= driver.findElement(SectionBenefits).getText();
+	Assert.isTrue(ExpectedTittle.equals(TextfromSection),"You are not on 3th Page");
+	System.out.println("You are on 3th Page");
+	
+	
+return this;	
+}
+
+public Page3 AddBreakDownAssistance(String add) {
+	
+	if(add.equals("Yes")) {
+	
+		WebElement x = new WebDriverWait(driver, Duration.ofSeconds(30))
+		        .until(ExpectedConditions.visibilityOf(driver.findElement(QuotePriceStep3)));
+		
+		String QuoteValuefrom3Page= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+		double ConvertQuoteValue= Double.parseDouble(QuoteValuefrom3Page);
+		String BreakdownAssistance = driver.findElement(BreakDownAssitanceValue).getText().substring(2, 7);
+		double ConvertBreakDownAsssitance= Double.parseDouble(BreakdownAssistance);
+		
+		
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+	    executor.executeScript("arguments[0].click();", driver.findElement(AddBreakDownAssistance));
+		
+	
+	
+	double result = ConvertQuoteValue + ConvertBreakDownAsssitance;
+	double RoundResult=Math.round(result*100.0)/100.0;
+	
+	WebElement y = new WebDriverWait(driver, Duration.ofSeconds(30))
+	        .until(ExpectedConditions.visibilityOf(driver.findElement(QuotePriceStep3)));
+	
+	String QuoteValuefrom3PageAfterUpdate= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+	
+	double UpdatedValueofQuote= Double.parseDouble(QuoteValuefrom3PageAfterUpdate);
+	Assert.isTrue((UpdatedValueofQuote==RoundResult),"Wrong calculation after addding BreakdownAssistance");
+	if(UpdatedValueofQuote==RoundResult) {
+		System.out.println("Value after BreakdownAssistanse is correct " +  "" + UpdatedValueofQuote);
+		}
+	}
+	
+	
+	return this;
+}
+
+public Page3 AddOpenDriving(String add) {
+
+    
+	if(add.equals("Yes")) {
+		
+		WebElement x = new WebDriverWait(driver, Duration.ofSeconds(30))
+		        .until(ExpectedConditions.visibilityOf(driver.findElement(QuotePriceStep3)));
+		
+		String QuoteValuefrom3Page= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+		double ConvertQuoteValue= Double.parseDouble(QuoteValuefrom3Page);
+		String AddOpenDrivingValue = driver.findElement(OpenDrivingValue).getText().substring(2, 7);
+		double ConvertAddOpenDrivingValue= Double.parseDouble(AddOpenDrivingValue);
+		
+		
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+	    executor.executeScript("arguments[0].click();", driver.findElement(AddOpenDriving));
+		
+	
+	
+	double result = ConvertQuoteValue + ConvertAddOpenDrivingValue;
+	double RoundResult=Math.round(result*100.0)/100.0;
+	
+	WebElement y = new WebDriverWait(driver, Duration.ofSeconds(30))
+	        .until(ExpectedConditions.visibilityOf(driver.findElement(QuotePriceStep3)));
+	
+	String QuoteValuefrom3PageAfterUpdate= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+	
+	double UpdatedValueofQuote= Double.parseDouble(QuoteValuefrom3PageAfterUpdate);
+	Assert.isTrue((UpdatedValueofQuote==RoundResult),"Wrong calculation after addding OpenDriving");
+	if(UpdatedValueofQuote==RoundResult) {
+		System.out.println("Value after OpenDriving is correct " +  "" + UpdatedValueofQuote);
+		}
+	}
+	
+	
+return this;	
+}
+
+public Page3 AddProtectedNoClaim(String add) {
+	
+if(add.equals("Yes")) {
+		
+			WebElement x = new WebDriverWait(driver, Duration.ofSeconds(30))
+			        .until(ExpectedConditions.visibilityOf(driver.findElement(QuotePriceStep3)));
+			
+			String QuoteValuefrom3Page= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+			double ConvertQuoteValue= Double.parseDouble(QuoteValuefrom3Page);
+			String AddProtectedNoClaim = driver.findElement(ProtectedNoClaimDiscountValue).getText().substring(2, 7);
+			double ConvertProtectedNoClaim= Double.parseDouble(AddProtectedNoClaim);
+			
+			
+			JavascriptExecutor executor = (JavascriptExecutor) driver;
+		    executor.executeScript("arguments[0].click();", driver.findElement(AddProtectedNoClaimsDiscount));
+			
+		
+		
+		double result = ConvertQuoteValue + ConvertProtectedNoClaim;
+		double RoundResult=Math.round(result*100.0)/100.0;
+		
+		WebElement y = new WebDriverWait(driver, Duration.ofSeconds(30))
+		        .until(ExpectedConditions.visibilityOf(driver.findElement(QuotePriceStep3)));
+		
+		String QuoteValuefrom3PageAfterUpdate= driver.findElement(QuotePriceStep3).getText().replace("€", "");
+		
+		double UpdatedValueofQuote= Double.parseDouble(QuoteValuefrom3PageAfterUpdate);
+		
+		if(Double.compare(RoundResult, UpdatedValueofQuote)==RoundResult) {
+			System.out.println("Value after ProtectedNoClaim is correct " +  "" + UpdatedValueofQuote);
+			}
+		}
+	
+	
+	return this;
+}
+
+}

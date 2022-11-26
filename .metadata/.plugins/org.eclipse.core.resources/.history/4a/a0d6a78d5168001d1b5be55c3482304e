@@ -1,0 +1,40 @@
+package Pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class LoginPage {
+
+	
+WebDriver driverloginpage;
+
+ 
+public LoginPage(WebDriver driver) {
+	this.driverloginpage=driver;  //  musisz mu przekazac drivera z LoginDemo klasy do Loginpage bo nie bedzie instancji tutaj
+	
+}
+	
+By username= By.id("name");
+By password=By.id("password");
+By button_login=By.id("login");
+By button_logout= By.id("logout");
+
+
+public void EnterUserName(String Username) {
+	driverloginpage.findElement(username).sendKeys(Username);
+}
+
+public void EnterPassword(String EnterPassword) {
+	driverloginpage.findElement(password).sendKeys(EnterPassword);
+}
+
+public void ClickonLoginButton() {
+	driverloginpage.findElement(button_login).click();
+}
+
+public void CheckLogoutisDisplayed() {
+	
+	driverloginpage.findElement(button_logout).isDisplayed()
+}
+
+}

@@ -122,6 +122,8 @@ public class MasterTest {
     	      DrivingLicenceFirstUse("10","07", "2010").
     	      ClaimDeclined("No").ProsecutionPending("No").
     	      MedicalCondition("No");
+    	;
+    	
     	
     	
     	return this;

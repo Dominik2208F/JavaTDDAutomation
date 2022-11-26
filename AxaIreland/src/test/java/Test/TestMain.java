@@ -39,7 +39,7 @@ public void BrowserSetUp() throws IOException {
 @Test
 public void Test0() throws IOException, Exception { 
  
-	MasterData.DataRowLoader(1); // run first row from Data.xlsx
+	MasterData.DataRowLoader(1); // run first row from Data.xlsx.
 	new MasterTest(Driver).
     PageOneLouncher().
     PageTwoLouncher().
@@ -50,7 +50,7 @@ public void Test0() throws IOException, Exception {
 @Test
 public void Test1() throws IOException, Exception { 
 	
-	MasterData.DataRowLoader(2); // run second row from Data.xlsx
+	MasterData.DataRowLoader(2); // run second row from Data.xlsx.
 	new MasterTest(Driver).
 	PageOneLouncher().
 	PageTwoLouncher().

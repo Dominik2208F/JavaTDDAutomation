@@ -18,45 +18,19 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import Mapping.VariablesMapping;
 import Pages.Page1;
 
 
 public class MasterData  {
-	static String Registration;
-	static String BusinessPurpouse;
-	static String CommunityPurpouse;
-	static String TypeOfBusiness;
-	static String KM;
-	static String Male;
-	static String Name;
-	static String Surname;
-	static double Day;
-	static double Month;
-	static double Year;
-	static String email;
-	static double Phone;
-	static String Employment;
-	static String Occupation;
-	static String Adress;
-	static String TypeofHouseHold;
-	static String Licence;
-	static String EssentialDriving;
-	static String LicenceTime;
-	static String PenaltyPoints;
-	static double HowManyPenalty;
-	static String Reason;
-	static String RecentInsurance;
-	static String NCD;
-	static String Discount;
-	static String Breakdown;
-	static String OpenDriving;
-	static String ProtectedNoClaim;
+	
+	
 	File src;
 	FileInputStream fis;
 	XSSFWorkbook xsf;
 	XSSFSheet sheet;
   public MasterData() throws IOException {
-		src = new File("C:/Users/Domin/eclipse-workspace/AxaIreland/src/test/java/Test/Data.xlsx");
+		src = new File("C:\\Users\\Domin\\git\\LocalAxaIrelandRepo\\AxaIreland\\src\\test\\java\\Test\\Data.xlsx");
 		fis= new FileInputStream(src);
 	    xsf= new XSSFWorkbook(fis);
 		sheet = xsf.getSheetAt(0);
@@ -65,35 +39,46 @@ public class MasterData  {
   public MasterData DataRowLoader(int row) throws Exception {			 
 	 
 
-	  Registration= sheet.getRow(row).getCell(0).getStringCellValue();
-      BusinessPurpouse= sheet.getRow(row).getCell(1).getStringCellValue();
-	  CommunityPurpouse = sheet.getRow(row).getCell(2).getStringCellValue();
-	  TypeOfBusiness= sheet.getRow(row).getCell(3).getStringCellValue();
-	  KM= sheet.getRow(row).getCell(4).getStringCellValue();
-	  Male= sheet.getRow(row).getCell(5).getStringCellValue();
-	  Name= sheet.getRow(row).getCell(6).getStringCellValue();
-	  Surname= sheet.getRow(row).getCell(7).getStringCellValue();
-	  Day= sheet.getRow(row).getCell(8).getNumericCellValue();
-	  Month= sheet.getRow(row).getCell(9).getNumericCellValue();
-	  Year = sheet.getRow(row).getCell(10).getNumericCellValue();
-	  email= sheet.getRow(row).getCell(11).getStringCellValue();
-     Phone= sheet.getRow(row).getCell(12).getNumericCellValue();
-	  Employment= sheet.getRow(row).getCell(13).getStringCellValue();
-	  Occupation= sheet.getRow(row).getCell(14).getStringCellValue();
-	  Adress= sheet.getRow(row).getCell(15).getStringCellValue();
-	  TypeofHouseHold= sheet.getRow(row).getCell(16).getStringCellValue();
-	  Licence= sheet.getRow(row).getCell(17).getStringCellValue();
-	  EssentialDriving= sheet.getRow(row).getCell(18).getStringCellValue();
-	  LicenceTime= sheet.getRow(row).getCell(19).getStringCellValue();
-	  PenaltyPoints= sheet.getRow(row).getCell(20).getStringCellValue();
-	  HowManyPenalty= sheet.getRow(row).getCell(21).getNumericCellValue();
-	  Reason= sheet.getRow(row).getCell(22).getStringCellValue();
-	  RecentInsurance= sheet.getRow(row).getCell(23).getStringCellValue();
-	  NCD= sheet.getRow(row).getCell(24).getStringCellValue();
-	  Discount= sheet.getRow(row).getCell(25).getStringCellValue();
-	  Breakdown= sheet.getRow(row).getCell(26).getStringCellValue();
-	  OpenDriving=sheet.getRow(row).getCell(27).getStringCellValue();
-	  ProtectedNoClaim= sheet.getRow(row).getCell(28).getStringCellValue();
+	  VariablesMapping.Registration= sheet.getRow(row).getCell(0).getStringCellValue();
+	  VariablesMapping.BusinessPurpouse= sheet.getRow(row).getCell(1).getStringCellValue();
+	  VariablesMapping.CommunityPurpouse = sheet.getRow(row).getCell(2).getStringCellValue();
+	  VariablesMapping.TypeOfBusiness= sheet.getRow(row).getCell(3).getStringCellValue();
+	  VariablesMapping.KM= sheet.getRow(row).getCell(4).getStringCellValue();
+	  VariablesMapping.Male= sheet.getRow(row).getCell(5).getStringCellValue();
+	  VariablesMapping.Name= sheet.getRow(row).getCell(6).getStringCellValue();
+	  VariablesMapping.Surname= sheet.getRow(row).getCell(7).getStringCellValue();
+	  VariablesMapping.Day= sheet.getRow(row).getCell(8).getNumericCellValue();
+	  VariablesMapping.Month= sheet.getRow(row).getCell(9).getNumericCellValue();
+	  VariablesMapping.Year = sheet.getRow(row).getCell(10).getNumericCellValue();
+	  VariablesMapping.email= sheet.getRow(row).getCell(11).getStringCellValue();
+	  VariablesMapping.Phone= sheet.getRow(row).getCell(12).getNumericCellValue();
+	  VariablesMapping.Employment= sheet.getRow(row).getCell(13).getStringCellValue();
+	  VariablesMapping.Occupation= sheet.getRow(row).getCell(14).getStringCellValue();
+	  VariablesMapping.Adress= sheet.getRow(row).getCell(15).getStringCellValue();
+	  VariablesMapping.TypeofHouseHold= sheet.getRow(row).getCell(16).getStringCellValue();
+	  VariablesMapping.Licence= sheet.getRow(row).getCell(17).getStringCellValue();
+	  VariablesMapping.EssentialDriving= sheet.getRow(row).getCell(18).getStringCellValue();
+	  VariablesMapping.LicenceTime= sheet.getRow(row).getCell(19).getStringCellValue();
+	  VariablesMapping.PenaltyPoints= sheet.getRow(row).getCell(20).getStringCellValue();
+	  VariablesMapping.HowManyPenalty= sheet.getRow(row).getCell(21).getNumericCellValue();
+	  VariablesMapping.Reason= sheet.getRow(row).getCell(22).getStringCellValue();
+	  VariablesMapping.RecentInsurance= sheet.getRow(row).getCell(23).getStringCellValue();
+	  VariablesMapping.NCD= sheet.getRow(row).getCell(24).getStringCellValue();
+	  VariablesMapping.Discount= sheet.getRow(row).getCell(25).getStringCellValue();
+	  VariablesMapping.Breakdown= sheet.getRow(row).getCell(26).getStringCellValue();
+	  VariablesMapping.OpenDriving=sheet.getRow(row).getCell(27).getStringCellValue();
+	  VariablesMapping.ProtectedNoClaim= sheet.getRow(row).getCell(28).getStringCellValue();
+	  VariablesMapping.InsuranceExpiryQuestion=sheet.getRow(row).getCell(29).getStringCellValue();
+	  VariablesMapping.IsPolicyRefused=sheet.getRow(row).getCell(30).getStringCellValue();
+	  VariablesMapping.IsCarModified=sheet.getRow(row).getCell(31).getStringCellValue();
+	  VariablesMapping.EstimatedCarValue=sheet.getRow(row).getCell(32).getStringCellValue();
+	  VariablesMapping.CarValue=sheet.getRow(row).getCell(33).getStringCellValue();
+	  VariablesMapping.DidYouPurchaseACar=sheet.getRow(row).getCell(34).getStringCellValue();
+	  VariablesMapping.IsRegisterToYourSpouse=sheet.getRow(row).getCell(35).getStringCellValue();
+	  VariablesMapping.MainDriver=sheet.getRow(row).getCell(36).getStringCellValue();
+	  VariablesMapping.ClaimDeclined=sheet.getRow(row).getCell(37).getStringCellValue();
+	  VariablesMapping.ProsecutionPending=sheet.getRow(row).getCell(38).getStringCellValue();
+	  VariablesMapping.MedicalCondition=sheet.getRow(row).getCell(39).getStringCellValue();
 	  return this;
 }
 

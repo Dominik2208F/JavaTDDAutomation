@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 
+import Mapping.VariablesMapping;
 import Pages.Page1;
 import Pages.Page2;
 import Pages.Page3;
@@ -35,44 +36,44 @@ public class MasterTest {
 		
 		
 	page1.CookiesHandler().
-		  EnterRegistrationNumber(MasterData.Registration).
-	      WillthisCarbeUsedforBusinessPurpouseorCommunity(MasterData.BusinessPurpouse,MasterData.CommunityPurpouse);
+		  EnterRegistrationNumber(VariablesMapping.Registration).
+	      WillthisCarbeUsedforBusinessPurpouseorCommunity(VariablesMapping.BusinessPurpouse,VariablesMapping.CommunityPurpouse);
 
 				if (page1.CheckifTextIsDisyplayed("What type of business use cover do you require?")) {
-					page1.TypeOfBusinessCover(MasterData.TypeOfBusiness);
+					page1.TypeOfBusinessCover(VariablesMapping.TypeOfBusiness);
 					}
-	 page1.HowManyKilometersPerYear(MasterData.KM).
-	       EnterYouPersonalData(MasterData.Male,MasterData.Name, MasterData.Surname).
-	       EnterYouDataOfBirth(MasterData.Day, MasterData.Month,MasterData.Year).
-	       EnterEmailandPhoneNumber(MasterData.email,MasterData.Phone).
-	       EmploymentStatus(MasterData.Employment);
+	 page1.HowManyKilometersPerYear(VariablesMapping.KM).
+	       EnterYouPersonalData(VariablesMapping.Male,VariablesMapping.Name, VariablesMapping.Surname).
+	       EnterYouDataOfBirth(VariablesMapping.Day, VariablesMapping.Month,VariablesMapping.Year).
+	       EnterEmailandPhoneNumber(VariablesMapping.email,VariablesMapping.Phone).
+	       EmploymentStatus(VariablesMapping.Employment);
 	 
 		 		if(page1.CheckifTextIsDisyplayed("What is your occupation?")) {
-		 		   page1.EnterOccupation(MasterData.Occupation);
+		 		   page1.EnterOccupation(VariablesMapping.Occupation);
 		 		  }
 		 		if(page1.CheckifTextIsDisyplayed("Please enter your address or Eircode")) {
-		 		   page1.EnterAdress(MasterData.Adress);
+		 		   page1.EnterAdress(VariablesMapping.Adress);
 		 		  }
 	 
-	page1.TypeOfHouseHold(MasterData.TypeofHouseHold).
-		  CurrentLicenceType(MasterData.Licence);
+	page1.TypeOfHouseHold(VariablesMapping.TypeofHouseHold).
+		  CurrentLicenceType(VariablesMapping.Licence);
 	       
 				 if(page1.CheckifTextIsDisyplayed("Have you completed the Essential Driver Training?")) {
-					 page1.EssentialDrivingTrainin(MasterData.EssentialDriving);
+					 page1.EssentialDrivingTrainin(VariablesMapping.EssentialDriving);
 				 }
-	page1.HowLongLicence(MasterData.LicenceTime).
+	page1.HowLongLicence(VariablesMapping.LicenceTime).
 	       PenaltyPointQuestion("No");
 	 
 				 if(page1.CheckifTextIsDisyplayed(("How many penalty points do you have?"))){
-					  page1.HowManyPenaltyPointandReason(MasterData.HowManyPenalty,MasterData.Reason);
+					  page1.HowManyPenaltyPointandReason(VariablesMapping.HowManyPenalty,VariablesMapping.Reason);
 				  }
 				  if(page1.CheckifTextIsDisyplayed(("What was your most recent insurance?"))) {
-					   page1.RecentInsuranceType(MasterData.RecentInsurance);
+					   page1.RecentInsuranceType(VariablesMapping.RecentInsurance);
 				  } 	
 				 if(page1.CheckifTextIsDisyplayed("Number of years No Claims Discount earned in Ireland and/or the UK")){
-					  page1.NumberOfNCD(MasterData.NCD);
+					  page1.NumberOfNCD(VariablesMapping.NCD);
 				 }
-	 page1.PolicyDiscount(MasterData.Discount).
+	 page1.PolicyDiscount(VariablesMapping.Discount).
 	      DownSiteConfirmationandConfirmation();
 	 return this;
   }	
@@ -91,9 +92,9 @@ public class MasterTest {
     public MasterTest PageThreeLouncher() throws InterruptedException {
     	
     	page3.CheckifPage3isLoaded().
-    		  AddBreakDownAssistance(MasterData.Breakdown).
-    	      AddOpenDriving(MasterData.OpenDriving).
-    	      AddProtectedNoClaim(MasterData.ProtectedNoClaim).
+    		  AddBreakDownAssistance(VariablesMapping.Breakdown).
+    	      AddOpenDriving(VariablesMapping.OpenDriving).
+    	      AddProtectedNoClaim(VariablesMapping.ProtectedNoClaim).
     	      MoveToPageFour();
     	
     	return this;
@@ -103,25 +104,26 @@ public class MasterTest {
     	
     	page4.
     	CheckifPage4isloaded().
-    	EnterInsuranceExpiryQuestion("No");
+    	EnterInsuranceExpiryQuestion(VariablesMapping.InsuranceExpiryQuestion);
     	if (page1.CheckifTextIsDisyplayed("When does your existing policy expire?")) {
 			page4.WhatDoesYourExistingPolicyExpire("20/11/2022");
 			}
-    	page4.isPolicyRefused("Yes").
-    		  IsCarmodified("No")
-    	      .EstimatedCarValue("No");
+    	page4.isPolicyRefused(VariablesMapping.IsPolicyRefused).
+    		  IsCarmodified(VariablesMapping.IsCarModified)
+    	      .EstimatedCarValue(VariablesMapping.EstimatedCarValue);
     	if(page1.CheckifTextIsDisyplayed("What is the value of the car?")) {
-    		page4.EnterValueofCar("5,001 to 7,000");
+    		page4.EnterValueofCar(VariablesMapping.CarValue);
     		}
-    	page4.DidYouPurchaseTheCar("No");
+    	page4.DidYouPurchaseTheCar(VariablesMapping.DidYouPurchaseACar);
     	if(page1.CheckifTextIsDisyplayed("When did you purchase the car?")) {
     		page4.PurchaseData("10", "2015");
     		}
-    	page4.IscarRegisteredtoYouorSpouse("Yes").
-    	      AreyouMaindriver("Yes").
+    	page4.IscarRegisteredtoYouorSpouse(VariablesMapping.IsRegisterToYourSpouse).
+    	      AreyouMaindriver(VariablesMapping.MainDriver).
     	      DrivingLicenceFirstUse("10","07", "2010").
-    	      ClaimDeclined("No").ProsecutionPending("No").
-    	      MedicalCondition("No");
+    	      ClaimDeclined(VariablesMapping.ClaimDeclined).
+    	      ProsecutionPending(VariablesMapping.ProsecutionPending).
+    	      MedicalCondition(VariablesMapping.MedicalCondition);
     	;
     	
     	
